@@ -1,6 +1,6 @@
 package com.example.feign.fallback;
 
-import com.example.feign.IProviderClient;
+import com.example.feign.ISimpleClient;
 import org.springframework.stereotype.Component;
 
 /**
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
  * @date 2020/6/23 0023 21:55
  */
 @Component
-public class ProviderFallback implements IProviderClient {
+public class SimpleFallback implements ISimpleClient {
 
     @Override
     public String hello() {
