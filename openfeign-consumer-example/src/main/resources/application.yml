@@ -4,6 +4,8 @@ server:
 spring:
   application:
     name: openfeign-consumer-example
+  main:
+    allow-bean-definition-overriding: true
 
 # eureka 配置
 eureka:

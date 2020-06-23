@@ -13,6 +13,6 @@ public class InheritProviderController implements IInheritClient {
 
     @Override
     public String inherit() {
-        return "Inherit Characteristic";
+        return "Inherit Characteristic.";
     }
 }
