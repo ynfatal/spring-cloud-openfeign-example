@@ -10,7 +10,7 @@
   <artifactId>openfeign-provider-example</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>openfeign-provider-example</name>
-  <description>Demo project for Spring Cloud OpenFeign Provider Example</description>
+  <description>Demo project for Spring Cloud openfeign provider example</description>
 
   <properties>
     <java.version>1.8</java.version>
@@ -20,6 +20,10 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
