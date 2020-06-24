@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import com.example.feign.IInheritClient;
+import com.example.request.CustomGetRequest;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -15,4 +16,17 @@ public class InheritProviderController implements IInheritClient {
     public String inherit() {
         return "Inherit Characteristic.";
     }
+
+    @Override
+    public String multiparameter(String string, Integer integer, Long longValue, Double doubleValue) {
+        return String.format("string: %s, integer: %s, longValue: %s, doubleValue: %s", string, integer, longValue, doubleValue);
+    }
+
+    @Override
+    public String customRequest(CustomGetRequest customGetRequest) {
+        return String.format("string: %s, integer: %s, longValue: %s, doubleValue: %s", customGetRequest.getString(),
+            customGetRequest.getInteger(), customGetRequest.getLongValue(), customGetRequest.getDoubleValue());
+    }
+
+
 }
