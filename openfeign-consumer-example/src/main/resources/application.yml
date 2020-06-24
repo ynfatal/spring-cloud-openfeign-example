@@ -4,6 +4,8 @@ server:
 spring:
   application:
     name: openfeign-consumer-example
+  # 引用了指定服务的多个 FeignClient，那么该服务的 FeignClientSpecification（访问级别为 default） 会被注册多次，设置
+  # spring.main.allow-bean-definition-overriding=true，允许 Bean 定义覆盖，否则启动失败。
   main:
     allow-bean-definition-overriding: true
 
