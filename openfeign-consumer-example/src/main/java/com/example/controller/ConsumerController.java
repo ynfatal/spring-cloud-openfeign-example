@@ -2,9 +2,10 @@ package com.example.controller;
 
 import com.example.feign.IInheritClient;
 import com.example.feign.ISimpleClient;
-import com.example.request.CustomGetRequest;
+import com.example.request.CustomRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -28,13 +29,24 @@ public class ConsumerController {
         return inheritClient.inherit();
     }
 
-    @GetMapping("/multiparameter")
-    public String multiparameter() {
-        return inheritClient.multiparameter("fatal", 18, 22L, 104.5D);
+    @GetMapping("/multi_parameters")
+    public String multiParametersGet() {
+        return inheritClient.multiParametersGet("multiParametersGet", 18, 22L, 104.5D);
     }
 
     @GetMapping("/custom_request")
-    public String customRequest() {
-        return inheritClient.customRequest(new CustomGetRequest("fatal", 18, 22L, 104.5D));
+    public String customGetRequest() {
+        return inheritClient.customGetRequest(new CustomRequest("customGetRequest", 22, 120L, 104.5D));
     }
+
+    @PostMapping("/custom_request")
+    public String customPostRequest() {
+        return inheritClient.customPostRequest(new CustomRequest("customPostRequest", 22, 120L, 104.5D));
+    }
+
+    @PostMapping("/multi_parameters")
+    public String multiParametersPost() {
+        return inheritClient.multiParametersPost(16, new CustomRequest("multiParametersPost", 18, 22L, 104.5D), 33L);
+    }
+
 }

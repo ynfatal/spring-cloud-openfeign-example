@@ -1,7 +1,7 @@
 package com.example.controller;
 
 import com.example.feign.IInheritClient;
-import com.example.request.CustomGetRequest;
+import com.example.request.CustomRequest;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -18,15 +18,24 @@ public class InheritProviderController implements IInheritClient {
     }
 
     @Override
-    public String multiparameter(String string, Integer integer, Long longValue, Double doubleValue) {
-        return String.format("string: %s, integer: %s, longValue: %s, doubleValue: %s", string, integer, longValue, doubleValue);
+    public String multiParametersGet(String string, Integer integer, Long longValue, Double doubleValue) {
+        return String.format("string: %s, integer: %s, longValue: %s, doubleValue: %s",
+                string, integer, longValue, doubleValue);
     }
 
     @Override
-    public String customRequest(CustomGetRequest customGetRequest) {
-        return String.format("string: %s, integer: %s, longValue: %s, doubleValue: %s", customGetRequest.getString(),
-            customGetRequest.getInteger(), customGetRequest.getLongValue(), customGetRequest.getDoubleValue());
+    public String customGetRequest(CustomRequest customRequest) {
+        return String.format("customRequest: %s", customRequest);
     }
 
+    @Override
+    public String customPostRequest(CustomRequest customRequest) {
+        return String.format("customRequest: %s", customRequest);
+    }
+
+    @Override
+    public String multiParametersPost(Integer integer, CustomRequest customRequest, Long longValue) {
+        return String.format("integer: %s, longValue: %s, customRequest: %s", integer, longValue, customRequest);
+    }
 
 }
