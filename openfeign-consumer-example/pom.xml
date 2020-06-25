@@ -10,7 +10,7 @@
   <artifactId>openfeign-consumer-example</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>openfeign-consumer-example</name>
-  <description>Demo project for Spring Cloud openfeign consumer example</description>
+  <description>Demo project for Spring Cloud openfeign consumer</description>
 
   <properties>
     <java.version>1.8</java.version>

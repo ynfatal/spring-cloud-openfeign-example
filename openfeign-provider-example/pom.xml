@@ -10,7 +10,7 @@
   <artifactId>openfeign-provider-example</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>openfeign-provider-example</name>
-  <description>Demo project for Spring Cloud openfeign provider example</description>
+  <description>Demo project for Spring Cloud openfeign provider</description>
 
   <properties>
     <java.version>1.8</java.version>

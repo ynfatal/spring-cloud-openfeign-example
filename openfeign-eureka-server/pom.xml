@@ -10,7 +10,7 @@
     <artifactId>openfeign-erueka-server</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>openfeign-erueka-server</name>
-    <description>Demo project for Spring Cloud eureka server example</description>
+    <description>Demo project for Spring Cloud eureka server </description>
 
     <properties>
         <java.version>1.8</java.version>
