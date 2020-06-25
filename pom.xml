@@ -5,6 +5,7 @@
   <groupId>com.example</groupId>
   <artifactId>spring-cloud-openfeign-example</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
   <name>spring-cloud-openfeign-example</name>
   <description>Demo project for Spring Cloud OpenFeign</description>
 
