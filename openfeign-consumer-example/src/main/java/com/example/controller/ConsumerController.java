@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.feign.IAnotherClient;
 import com.example.feign.IInheritClient;
 import com.example.feign.ISimpleClient;
 import com.example.request.CustomRequest;
@@ -18,10 +19,16 @@ public class ConsumerController {
 
     private ISimpleClient simpleClient;
     private IInheritClient inheritClient;
+    private IAnotherClient anotherClient;
 
     @GetMapping("/hello")
     public String hello() {
         return simpleClient.hello();
+    }
+
+    @GetMapping("/another")
+    public String another() {
+        return anotherClient.another();
     }
 
     @GetMapping("/inherit")

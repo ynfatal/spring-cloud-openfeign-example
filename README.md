@@ -35,3 +35,5 @@ enum SearchStrategy {
 `com.example.feign.IInheritClient` 上的 `Mapping` 注解。
 `FeignClient` 接口中修饰参数的注解估计也是通过类似的方式找到的。
 在深入的话等以后再研究吧，现在找到原因就行。
+
+整理笔记时请参考[Spring Cloud OpenFeign](https://cloud.spring.io/spring-cloud-static/spring-cloud-openfeign/2.2.2.RELEASE/reference/html/#netflix-feign-starter)

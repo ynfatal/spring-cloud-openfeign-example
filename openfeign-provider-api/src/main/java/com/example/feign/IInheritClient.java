@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.*;
  * @author Fatal
  * @date 2020/6/24 0023 5:39
  */
-@FeignClient(value = "OPENFEIGN-PROVIDER-EXAMPLE", fallback = InheritFallback.class)
+@FeignClient(value = "OPENFEIGN-PROVIDER-EXAMPLE",
+        fallback = InheritFallback.class/*,
+        contextId = "IInheritClient"*/)
 public interface IInheritClient {
 
     /**
