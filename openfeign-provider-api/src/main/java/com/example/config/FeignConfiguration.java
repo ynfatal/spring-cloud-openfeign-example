@@ -10,7 +10,6 @@ import feign.optionals.OptionalDecoder;
 import feign.slf4j.Slf4jLogger;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.ObjectFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
 import org.springframework.cloud.openfeign.AnnotatedParameterProcessor;
 import org.springframework.cloud.openfeign.DefaultFeignLoggerFactory;
