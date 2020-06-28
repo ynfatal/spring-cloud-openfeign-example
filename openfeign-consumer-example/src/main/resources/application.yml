@@ -6,14 +6,14 @@ spring:
     name: openfeign-consumer-example
   # 引用了指定服务的多个 FeignClient，那么该服务的 FeignClientSpecification（访问级别为 default） 会被注册多次
   # 解决方案一：设置 spring.main.allow-bean-definition-overriding=true，允许 Bean 定义覆盖，否则启动失败。
-  main:
-    allow-bean-definition-overriding: true
+#  main:
+#    allow-bean-definition-overriding: true
   # 解决方案二：每个 FeignClient 都是用 contextId 来指定一个 FeignClient Bean 的名称，控制台就生成了两个不同的
   # FeignClientSpecification，不同的 FeignClient，都有属于自己的 FeignClientSpecification，
   # 如：IInheritClient.FeignClientSpecification，ISimpleClient.FeignClientSpecification
-  # 方案选择：如果有 FeignClient 指定了不同的 configuration，那么选择方案二，否则，configuration 的值会在
+  # 方案选择：如果每个 FeignClient 指定了不同的自定义 configuration，那么选择方案二，否则，configuration 的值会在
   # OPENFEIGN-PROVIDER-EXAMPLE.FeignClientSpecification 中被覆盖。如果全部都使用相同的 configuration（包括默认），
-  # 那么可以选择方案一。(方案选择纯属猜测，待测)
+  # 那么可以选择方案一。
 
 
 # eureka 配置
