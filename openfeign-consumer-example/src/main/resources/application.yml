@@ -11,9 +11,10 @@ spring:
   # 解决方案二：每个 FeignClient 都是用 contextId 来指定一个 FeignClient Bean 的名称，控制台就生成了两个不同的
   # FeignClientSpecification，不同的 FeignClient，都有属于自己的 FeignClientSpecification，
   # 如：IInheritClient.FeignClientSpecification，ISimpleClient.FeignClientSpecification
-  # 方案选择：如果每个 FeignClient 指定了不同的自定义 configuration，那么选择方案二，否则，configuration 的值会在
-  # OPENFEIGN-PROVIDER-EXAMPLE.FeignClientSpecification 中被覆盖。如果全部都使用相同的 configuration（包括默认），
-  # 那么可以选择方案一。
+  # 方案选择：
+  # 如果每个 FeignClient 都有不同的自定义配置，那么我们必须使用 @FeignClient 的 contextId 属性以避免这些配置bean 的名称冲突，
+  # 进而导致 configuration 的值在 OPENFEIGN-PROVIDER-EXAMPLE.FeignClientSpecification 中被覆盖，所以必须选择方案二；
+  # 如果全部都使用相同的 configuration（自定义的或者默认的），那么可以选择方案一。
 
 
 # eureka 配置
