@@ -1,5 +1,6 @@
 package com.example.feign;
 
+import com.example.config.FooConfiguration;
 import com.example.feign.fallback.InheritFallback;
 import com.example.request.CustomRequest;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -11,8 +12,9 @@ import org.springframework.web.bind.annotation.*;
  * @date 2020/6/24 0023 5:39
  */
 @FeignClient(value = "OPENFEIGN-PROVIDER-EXAMPLE",
-        fallback = InheritFallback.class/*,
-        contextId = "IInheritClient"*/)
+        fallback = InheritFallback.class,
+        contextId = "IInheritClient",
+        configuration = FooConfiguration.class)
 public interface IInheritClient {
 
     /**

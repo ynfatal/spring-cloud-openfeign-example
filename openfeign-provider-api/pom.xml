@@ -17,6 +17,7 @@
     </properties>
 
     <dependencies>
+        <!-- 	spring-cloud-starter-openfeign contains both spring-cloud-starter-netflix-ribbon and spring-cloud-starter-loadbalancer. -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
