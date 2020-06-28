@@ -34,6 +34,7 @@ import java.util.List;
  * 1. FeignConfiguration 不需要用 @Configuration 注释。但是，如果选择使用，那么需要将它从任何可能包含此配置
  * 的 @ComponentScan 中排除，否则它被指定后将会变成 Feign feign.Decoder, feign.Encoder, feign.Contract 等等
  * 的默认配置源（全局）。可以放在 @ComponentScan 扫描不到的地方或者使用 @ComponentScan 来排除它。
+ * 结论：全局的话可以加，局部的话不加。
  * 2. Spring Cloud Netflix 默认为 feign 提供以下 bean（BeanType beanName: ClassName）:
  * - Decoder feignDecoder: ResponseEntityDecoder (包装了一个 SpringDecoder)
  * - Encoder feignEncoder: SpringEncoder
