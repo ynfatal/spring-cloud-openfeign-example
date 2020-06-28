@@ -1,6 +1,8 @@
 package com.example;
 
 import java.util.stream.Stream;
+
+import com.example.config.FeignConfiguration;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,7 +14,7 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 @EnableEurekaClient
 // 开启 FeignClient 注册
-@EnableFeignClients
+@EnableFeignClients(defaultConfiguration = FeignConfiguration.class)
 public class OpenfeignConsumerExampleApplication {
 
     public static void main(String[] args) {

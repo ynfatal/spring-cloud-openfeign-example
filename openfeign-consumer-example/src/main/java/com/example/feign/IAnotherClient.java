@@ -1,6 +1,5 @@
 package com.example.feign;
 
-import com.example.config.FooConfiguration;
 import com.example.feign.fallback.AnotherFallback;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,8 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 @FeignClient(value = "OPENFEIGN-PROVIDER-EXAMPLE",
         fallback = AnotherFallback.class,
-        contextId = "IAnotherClient",
-        configuration = FooConfiguration.class)
+        contextId = "IAnotherClient")
 public interface IAnotherClient {
 
     @GetMapping("/another")
