@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.openfeign.FeignClientsConfiguration;
 import org.springframework.cloud.openfeign.FeignContext;
+import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,6 +29,7 @@ public class ConsumerController {
     private IAnotherClient anotherClient;
     private IInheritClient inheritClient;
     private FeignContext feignContext;
+    private ApplicationContext applicationContext;
 
     @GetMapping("/hello")
     public String hello() {
@@ -39,6 +41,22 @@ public class ConsumerController {
         return anotherClient.another();
     }
 
+    /**
+     * @apiNote
+     * 1. org.springframework.cloud.openfeign.FeignContext
+     * 创建 Feign 实例的工厂，它会为每个 FeignClient 创建一个 Spring ApplicationContext（AnnotationConfigApplicationContext），
+     * 并从中提取它需要的 Bean 。
+     * 每个 FeignClient 绑定一个 AnnotationConfigApplicationContext，用于存储自己的最后获得的配置 Bean。
+     * 所有的 FeignClient 和对应的 AnnotationConfigApplicationContext 作为键值对存储在 ConcurrentHashMap 中。
+     * AnnotationConfigApplicationContext 是 Spring 容器，但并非我们平常谈的那个，平常那个全局的是 AnnotationConfigServletWebServerApplicationContext。
+     * AnnotationConfigApplicationContext 调用了方法 org.springframework.context.support.GenericApplicationContext#setParent(org.springframework.context.ApplicationContext)
+     * 设置了 AnnotationConfigServletWebServerApplicationContext，并将它的 BeanFactory 初始为 parent 的 BeanFactory。后边内部的 Bean 都是通过 parent 的 BeanFactory 俩创建的。
+     * 2. org.springframework.cloud.context.named.NamedContextFactory#getContextNames()
+     * 获得当前 FeignContext 中所有的 FeignClient 的名称。（它将作为键从而拿到 FeignClient 的 AnnotationConfigApplicationContext）
+     * 3. org.springframework.cloud.context.named.NamedContextFactory#getInstance(java.lang.String, java.lang.Class)
+     * 参数一：指定我们想拿的 FeignClient 的 name；参数二：想从容器中拿的 Bean 的 Class 对象。
+     * @return
+     */
     @GetMapping("/feign_context")
     public FeignContext feignContext() {
         log.info("contextNames = [{}]", feignContext.getContextNames());
