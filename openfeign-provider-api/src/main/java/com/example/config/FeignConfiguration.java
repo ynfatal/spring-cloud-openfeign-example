@@ -45,7 +45,7 @@ import java.util.List;
  *  在类路径上，则使用 FeignBlockingLoadBalancerClient。如果它们都不在类路径上，就使用默认的 feign client。
  * 3. FeignClientsConfiguration 也被标注了 @Configuration，它里边也配置了很多 Bean，为什么这个配置组件包括它包含的 Bean 没有被
  * Spring 容器管理，答案是 @ComponentScan 是扫描不到这个配置组件，所以它没有托管 Spring 容器。
- * @author Belo-betty
+ * @author Fatal
  * @date 2020/6/28 8:47
  */
 @Configuration
