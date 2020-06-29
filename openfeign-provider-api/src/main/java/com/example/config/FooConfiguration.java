@@ -13,7 +13,10 @@ public class FooConfiguration {
 
     @Bean
     public Retryer feignRetryer() {
-        return new Retryer.Default();
+        // 测试自定义全局 feign 配置 和 自定义局部 feign 配置的优先级
+        return Retryer.NEVER_RETRY;
+        // 测试默认 feign 配置 和 自定义局部 feign 配置的优先级
+//        return new Retryer.Default();
     }
 
 }

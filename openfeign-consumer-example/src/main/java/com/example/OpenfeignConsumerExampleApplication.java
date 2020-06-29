@@ -21,15 +21,15 @@ import org.springframework.context.annotation.FilterType;
  */
 @SpringBootApplication
 @EnableEurekaClient
-@ComponentScan(excludeFilters = {
+/*@ComponentScan(excludeFilters = {
     @ComponentScan.Filter(
         type = FilterType.ASSIGNABLE_TYPE,
         classes = {
 //            FooConfiguration.class,      // 局部 FeignClient 配置类如果标注为配置组件，可以在这里排掉它
-            FeignConfiguration.class
+//            FeignConfiguration.class
         }
     )
-})
+})*/
 // 开启 FeignClient 注册
 @EnableFeignClients(defaultConfiguration = FeignConfiguration.class)
 public class OpenfeignConsumerExampleApplication {

@@ -48,7 +48,7 @@ import java.util.List;
  * @author Fatal
  * @date 2020/6/28 8:47
  */
-@Configuration
+//@Configuration(proxyBeanMethods = false)
 @AllArgsConstructor
 public class FeignConfiguration {
 
@@ -83,7 +83,7 @@ public class FeignConfiguration {
 
     @Bean
     public Retryer feignRetryer() {
-        return Retryer.NEVER_RETRY;
+        return new Retryer.Default();
     }
 
     @Bean
