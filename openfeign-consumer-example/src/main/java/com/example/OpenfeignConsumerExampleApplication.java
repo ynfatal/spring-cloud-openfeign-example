@@ -1,9 +1,9 @@
 package com.example;
 
-import com.example.config.FooConfiguration;
 import java.util.stream.Stream;
 
 import com.example.config.FeignConfiguration;
+import com.example.config.FooConfiguration;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -26,12 +26,11 @@ import org.springframework.context.annotation.FilterType;
         type = FilterType.ASSIGNABLE_TYPE,
         classes = {
 //            FooConfiguration.class,      // 局部 FeignClient 配置类如果标注为配置组件，可以在这里排掉它
-//            FeignConfiguration.class
         }
     )
 })*/
 // 开启 FeignClient 注册
-@EnableFeignClients(defaultConfiguration = FeignConfiguration.class)
+@EnableFeignClients/*(defaultConfiguration = FeignConfiguration.class)*/
 public class OpenfeignConsumerExampleApplication {
 
     public static void main(String[] args) {
