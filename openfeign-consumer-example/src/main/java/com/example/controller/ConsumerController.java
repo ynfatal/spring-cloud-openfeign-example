@@ -19,7 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @implNote
  * 看下一个神奇的类，称为命名上下文工厂，全类名为：org.springframework.cloud.context.named.NamedContextFactory
- * 找到该类后，鼠标移到该类，ctrl + alt 后点击，看看它的子类，以目前引的依赖来看，它包括以下三个：
+ * 析：创建一组子上下文，它允许一组规范定义每个子上下文中的 Bean。
+ * 理解：怎么理解这句话呢，打个比方，以本文为例子，子上下文就是 FeignContext，每个 FeignClient 又会对应一个 FeignClientSpecification 规范。
+ * FeignClientSpecification 定义了 FeignClient 的配置，如果你为 FeignClient 定制了配置类，那么你可以在 FeignClientSpecification 看到它。
+ * FeignContext 发现指定 FeignClient 的 FeignClientSpecification 中没有 configuration，那么它就会选择默认的（也就是全局的那个，这里和优先级有关了）作为该 FeignClient 的配置。
+ * 看看：找到该类后，鼠标移到该类，ctrl + alt 后点击，看看它的子类，以目前引的依赖来看，它包括以下三个：
  * - org.springframework.cloud.openfeign.FeignContext
  * - org.springframework.cloud.loadbalancer.support.LoadBalancerClientFactory
  * - org.springframework.cloud.netflix.ribbon.SpringClientFactory
