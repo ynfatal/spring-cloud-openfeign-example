@@ -17,6 +17,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
+ * @implNote
+ * 看下一个神奇的类，称为命名上下文工厂，全类名为：org.springframework.cloud.context.named.NamedContextFactory
+ * 找到该类后，鼠标移到该类，ctrl + alt 后点击，看看它的子类，以目前引的依赖来看，它包括以下三个：
+ * - org.springframework.cloud.openfeign.FeignContext
+ * - org.springframework.cloud.loadbalancer.support.LoadBalancerClientFactory
+ * - org.springframework.cloud.netflix.ribbon.SpringClientFactory
+ * 这三个类都继承了 NamedContextFactory，所以它们都是以同一套规范实现的上下文。当然，目前我测出来就感觉优先级有点问题，估计是我没找到正确的姿势。
+ * 当然咯，它肯定不止三个子类，只是该项目只依赖了 openfeign，所以只能搜索到三个。
  * @author Fatal
  * @date 2020/6/23 0023 21:48
  */
@@ -44,7 +52,8 @@ public class ConsumerController {
     /**
      * @apiNote
      * 1. org.springframework.cloud.openfeign.FeignContext
-     * 创建 Feign 实例的工厂，它会为每个 FeignClient 创建一个 Spring ApplicationContext（AnnotationConfigApplicationContext），
+     * 该 Bean 在 FeignAutoConfiguration 中被创建，参考方法 org.springframework.cloud.openfeign.FeignAutoConfiguration#feignContext()
+     * 析：创建 Feign 实例的工厂，它会为每个 FeignClient 创建一个 Spring ApplicationContext（AnnotationConfigApplicationContext），
      * 并从中提取它需要的 Bean 。
      * 每个 FeignClient 绑定一个 AnnotationConfigApplicationContext，用于存储自己的最后获得的配置 Bean。
      * 所有的 FeignClient 和对应的 AnnotationConfigApplicationContext 作为键值对存储在 ConcurrentHashMap 中。
