@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
  * - org.springframework.cloud.openfeign.FeignContext
  * - org.springframework.cloud.loadbalancer.support.LoadBalancerClientFactory
  * - org.springframework.cloud.netflix.ribbon.SpringClientFactory
- * 这三个类都继承了 NamedContextFactory，所以它们都是以同一套规范实现的上下文。不过目前我测出来就感觉优先级有点问题，估计是我没找到正确的姿势。
+ * 这三个类都继承了 NamedContextFactory，所以它们都是以同一套规范实现的上下文。
  * 当然咯，它肯定不止三个子类，只是该项目只依赖了 openfeign，所以只能搜索到三个。
  * @author Fatal
  * @date 2020/6/23 0023 21:48
