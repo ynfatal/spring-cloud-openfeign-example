@@ -45,20 +45,16 @@ import java.util.List;
  *  在类路径上，则使用 FeignBlockingLoadBalancerClient。如果它们都不在类路径上，就使用默认的 feign client。
  * 3. FeignClientsConfiguration 也被标注了 @Configuration，它里边也配置了很多 Bean，为什么这个配置组件包括它包含的 Bean 没有被
  * Spring 容器管理，答案是 @ComponentScan 是扫描不到这个配置组件，所以它没有托管 Spring 容器。
- * 4. 本来以我对 @EnableFeignClient 的理解，我认为配置 @EnableFeignClient 的 defaultConfiguration 可以定制全局的 FeignClient 配置，
- * 不过按照目前的测试结果来看，使用 @EnableFeignClients(defaultConfiguration = FeignConfiguration.class) 配置的话优先级太高了，
- * 自定义局部配置都无法将其覆盖，于是优先级就变成了
- * `自定义全局 > 自定义局部 > 默认全局`
- * 配置行为如下：
- * - 自定义全局：使用 org.springframework.cloud.openfeign.EnableFeignClients#defaultConfiguration() 指定自定义全局配置类，该配置类不标注为配置组件
- * - 自定义局部：使用 org.springframework.cloud.openfeign.FeignClient#configuration() 指定自定义局部配置类，该配置类不标注为配置组件
- * - 默认全局：使用默认的方式，整合后什么都不搞
- * 当然，想要将优先级变为我们想要的
- * `自定义局部 > 自定义全部 > 默认全局`
- * 需要修改 自定义全局 配置的行为
- * - 自定义全局：不使用 org.springframework.cloud.openfeign.EnableFeignClients#defaultConfiguration() ，但要将该配置类标注为配置组件
- * 结论：@EnableFeignClients 的 defaultConfiguration 真的是令人匪夷所思，优先级竟然最高（除去配置文件外），要不就是它真的就是想提供这样的
- * 功能，不过个人觉得这功能不太友善，要不这就是一个 bug，要不就是我找不到正确的姿势。
+ * 4. 同时使用自定义局部配置和自定义全局配置的话，配置行为如下：
+ * - 自定义全局：使用 org.springframework.cloud.openfeign.EnableFeignClients#defaultConfiguration() 指定自定义全局配置类，该配置类不需要标注为配置组件
+ * - 自定义局部：使用 org.springframework.cloud.openfeign.FeignClient#configuration() 指定自定义局部配置类，该配置类不需要标注为配置组件
+ * 注意事项：
+ * - 相同类型的 Bean，在自定义局部配置类和自定义全局配置类中不能重复，否则会造成局部的 Bean 无法实例化，这样局部就没作用了
+ * - 在自义局部配置类给该 Bean 添加标注 @Primary，以表示该类型的 Bean 自定义局部配置高于自定义全局配置。
+ * - 如果是默认全局与其中一个自定义配置搭配，那么随便玩，要是怕出问题也可以以当前这个最严谨的方式配置，也就是两点注意事项。
+ * 扩展：
+ * 其实这里的自定义配置没必要标注 @Configuration，因为这里的配置是给字上下文用的，标注后，在父上下文中又没用。
+ * 如果在父上下文中需要用到，可以添加标注，否则，去掉吧。
  * @author Fatal
  * @date 2020/6/28 8:47
  */

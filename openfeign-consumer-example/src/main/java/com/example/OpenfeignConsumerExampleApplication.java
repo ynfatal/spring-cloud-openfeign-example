@@ -29,7 +29,7 @@ import org.springframework.context.annotation.FilterType;
     )
 })*/
 // 开启 FeignClient 注册
-@EnableFeignClients/*(defaultConfiguration = FeignConfiguration.class)*/
+@EnableFeignClients(defaultConfiguration = FeignConfiguration.class)
 public class OpenfeignConsumerExampleApplication {
 
     public static void main(String[] args) {
