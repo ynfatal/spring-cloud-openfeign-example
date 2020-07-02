@@ -1,4 +1,5 @@
 # spring-cloud-openfeign-example
+[spring-cloud-openfeign 2.2.2.RELEASE](https://cloud.spring.io/spring-cloud-static/spring-cloud-openfeign/2.2.2.RELEASE/reference/html/)
 使用 openfeign 的继承特性，发现了一个问题。
 以本 Demo 的接口为例：
 `com.example.controller.InheritProviderController.inherit()` 方法上没有继承到 `@GetMapping`，
